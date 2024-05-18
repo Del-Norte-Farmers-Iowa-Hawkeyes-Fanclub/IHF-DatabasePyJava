@@ -69,3 +69,5 @@ if __name__ == '__main__':
 
 curl -X POST -H "Content-Type: application/json" -d '{"farm_id": "farm1"}' http://127.0.0.1:5000/create_farm
 curl -X POST -H "Content-Type: application/json" -d '{"farm_id": "farm1", "crop_type": "wheat"}' http://127.0.0.1:5000/plant_crop
+curl -X POST -H "Content-Type: application/json" -d '{"farm_id": "farm1"}' http://127.0.0.1:5000/harvest_crop
+curl -X GET "http://127.0.0.1:5000/farm_status?farm_id=farm1"
