@@ -71,3 +71,16 @@ curl -X POST -H "Content-Type: application/json" -d '{"farm_id": "farm1"}' http:
 curl -X POST -H "Content-Type: application/json" -d '{"farm_id": "farm1", "crop_type": "wheat"}' http://127.0.0.1:5000/plant_crop
 curl -X POST -H "Content-Type: application/json" -d '{"farm_id": "farm1"}' http://127.0.0.1:5000/harvest_crop
 curl -X GET "http://127.0.0.1:5000/farm_status?farm_id=farm1"
+
+
+@app.route('/plant_crop', methods=['POST'])
+def plant_crop():
+    data = request.json
+    farm_id = data.get('farm_id')
+    crop_type = data.get('crop_type')
+    if farm_id not in farms:
+        return jsonify({'error': 'Farm does not exist'}), 400
+    if crop_type not in crops:
+        return jsonify({'error': 'Invalid crop type'}), 400
+    
+    crop = {
