@@ -10,6 +10,7 @@ crops = {
     'corn': {'growth_time': timedelta(minutes=10)}
 }
 
+## app router
 @app.route('/create_farm', methods=['POST'])
 def create_farm():
     data = request.json
