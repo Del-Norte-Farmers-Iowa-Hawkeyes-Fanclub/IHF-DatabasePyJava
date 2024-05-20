@@ -151,3 +151,11 @@ curl -X GET "http://127.0.0.1:5000/farm_status?farm_id=farm1"
 
 
 
+@app.route('/create_farm', methods=['POST'])
+def create_farm():
+    data = request.json
+    farm_id = data.get('farm_id')
+    if farm_id in farms:
+        return jsonify({'error': 'Farm already exists'}), 400
+    farms[farm_id] = {'crops': [], 'created_at': datetime.now()}
+    return jsonify({'message': 'Farm created successfully', 'farm_id': farm_id})
