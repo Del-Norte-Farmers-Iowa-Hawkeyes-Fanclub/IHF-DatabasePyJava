@@ -160,3 +160,16 @@ def create_farm():
     return jsonify({'message': 'Farm created successfully', 'farm_id': farm_id})
 
 # post ^^^
+## entire post method framework
+
+from flask import Flask, request, jsonify
+from datetime import datetime, timedelta
+
+app = Flask(__name__)
+
+# In-memory database for simplicity
+farms = {}
+crops = {
+    'wheat': {'growth_time': timedelta(minutes=5)},
+    'corn': {'growth_time': timedelta(minutes=10)}
+}
