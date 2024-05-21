@@ -173,3 +173,5 @@ crops = {
     'wheat': {'growth_time': timedelta(minutes=5)},
     'corn': {'growth_time': timedelta(minutes=10)}
 }
+
+## add new CURL here
