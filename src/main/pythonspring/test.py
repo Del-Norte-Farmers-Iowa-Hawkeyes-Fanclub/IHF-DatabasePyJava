@@ -96,3 +96,23 @@ def delete_farm():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+# Example cURL commands
+
+# Create a farm
+# curl -X POST -H "Content-Type: application/json" -d '{"farm_id": "farm1"}' http://127.0.0.1:5000/create_farm
+
+# Plant a crop
+# curl -X POST -H "Content-Type: application/json" -d '{"farm_id": "farm1", "crop_type": "wheat"}' http://127.0.0.1:5000/plant_crop
+
+# Harvest crops
+# curl -X POST -H "Content-Type: application/json" -d '{"farm_id": "farm1"}' http://127.0.0.1:5000/harvest_crop
+
+# Get farm status
+# curl -X GET "http://127.0.0.1:5000/farm_status?farm_id=farm1"
+
+# List all farms
+# curl -X GET "http://127.0.0.1:5000/list_farms"
+
+# Delete a farm
+# curl -X DELETE -H "Content-Type: application/json" -d '{"farm_id": "farm1"}' http://127.0.0.1:5000/delete_farm
