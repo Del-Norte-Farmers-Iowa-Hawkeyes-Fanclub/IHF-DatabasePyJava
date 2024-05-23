@@ -118,3 +118,24 @@ if __name__ == '__main__':
 # curl -X DELETE -H "Content-Type: application/json" -d '{"farm_id": "farm1"}' http://127.0.0.1:5000/delete_farm
 
 ## ROHIN WORK ON THIS PART PLEASE BRO
+
+@app.route('/plant_crop', methods=['POST'])
+def plant_crop():
+    data = request.json
+    farm_id = data.get('farm_id')
+    crop_type = data.get('crop_type')
+    if not farm_id or not crop_type:
+        return jsonify({'error': 'Farm ID and Crop type are required'}), 400
+    if farm_id not in farms:
+        return jsonify({'error': 'Farm does not exist'}), 400
+    if crop_type not in crops:
+        return jsonify({'error': 'Invalid crop type'}), 400
+    
+    crop = {
+        'type': crop_type,
+        'planted_at': datetime.now(),
+        'ready_at': datetime.now() + crops[crop_type]['growth_time']
+    }
+    farms[farm_id]['crops'].append(crop)
+    logger.info(f"Crop {crop_type} planted in farm {farm_id}")
+    return jsonify({'message': 'Crop planted successfully', 'crop': crop})
